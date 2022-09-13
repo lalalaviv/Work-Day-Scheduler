@@ -2,17 +2,14 @@
 var currentDay = moment().format("dddd, MMM Do YYYY")
 $("#currentDay").text (currentDay);
 
-// sets time to 12am then adds 9 hours to start the day at 9am;
-var startTime = moment().startOf("day").add(9, "hours")
-
 
 // sets the current time to the start of the hour; 
 // e.g. if time is 9:30 will become 9:00; 
 var currentTime = moment().startOf("hour");
 
 // Function to compare hour slots with current time 
-function testTime() {
-   // sets a time of 9am 
+function highLightTime() {
+   // sets time to 12am then adds 9 hours to set a time of 9am 
     var time9 = moment().startOf('day').add(9, "hours");
  
     if (currentTime.isAfter(time9)) {
@@ -122,24 +119,20 @@ function testTime() {
     };
 }
 
-testTime();
+highLightTime();
+
+$(".saveBtn").click(function(event){
+    $(".saved").append("<p>Appointment added to local storage ✔️!</p>").toggle(10)
+    event.preventDefault();
+    var eventInput = $(this).siblings(".form-control").val();
+    var hourList = $(this).parent().data("hour")
+    localStorage.setItem(hourList,eventInput)
+});
 
 
+var t = [9, 10, 11, 12, 13, 14, 15, 16, 17];
+for (var i=0; i < t.length; i++){
+    var dataHour = localStorage.getItem(t[i]);
+    $(".block" + t[i]).val(dataHour);
+}
 
-// var time = [9, 10, 11, 12, 13, 14, 15, 16, 17];
-// for (var i=0; i < time.length; i++){
-//     var dataHour = localStorage.getItem(time[i]);
-//     $(".block" + time[i].val(dataHour));
-// }
-
-
-// $(".saveBtn").click(function(){
-//     event.preventDefault();
-//     var eventInput = $(this).sibling(".form-control").val();
-//     console.log("is it working?")
-//     var hourList = $(this).parent().data("hour"); 
-//     localStorage.setItem(hourList, eventInput);
-    
-
-
-// });
