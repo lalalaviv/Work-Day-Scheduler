@@ -118,9 +118,10 @@ function highLightTime() {
         $(".block17").addClass("present");
     };
 }
-
+//renders function 
 highLightTime();
 
+// displays saved msg and saves input value to local storage 
 $(".saveBtn").click(function(event){
     $(".saved").append("<p>Appointment added to local storage ✔️!</p>").toggle(10)
     event.preventDefault();
@@ -129,7 +130,7 @@ $(".saveBtn").click(function(event){
     localStorage.setItem(hourList,eventInput)
 });
 
-
+// loops through input block and acquires data from local storage
 var t = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 for (var i=0; i < t.length; i++){
     var dataHour = localStorage.getItem(t[i]);
