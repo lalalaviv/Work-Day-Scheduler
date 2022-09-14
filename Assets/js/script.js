@@ -123,12 +123,20 @@ highLightTime();
 
 // displays saved msg and saves input value to local storage 
 $(".saveBtn").click(function(event){
-    $(".saved").append("<p>Appointment added to local storage ✔️!</p>").toggle(10)
+    var message = $(".saved").append("<p>Appointment added to local storage ✔️!</p>")
+    setTimeout(function() { message.hide(); }, 5000);
     event.preventDefault();
     var eventInput = $(this).siblings(".form-control").val();
     var hourList = $(this).parent().data("hour")
     localStorage.setItem(hourList,eventInput)
 });
+
+
+//you would then set the textContent of the element you want to display the message equal to the message
+
+//then after the time has elapsed you would set the textContent to an empty string
+
+//if you want it to run when you click the button then yes, it would need to be inside the function that the button is running
 
 // loops through input block and acquires data from local storage
 var t = [9, 10, 11, 12, 13, 14, 15, 16, 17];
